@@ -1,0 +1,22 @@
+{
+  "name": "kardia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "startdev": "nodemon site/src/app.js",
+    "create-db":"sequelize db:create",
+    "migrate-db": "sequelize db:migrate",
+    "seed-db": "sequelize db:seed:all",
+    "drop-db": "sequelize db:drop"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.7",
+    "sequelize": "^6.6.2"
+  }
+}
