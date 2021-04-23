@@ -23,13 +23,14 @@ _________________
 ## Rutas
 
 #### Generales
-* "/" Devuelve una página vacía actualmente
-* "/users" devuelve un json con todos los usuarios
-* "/posts" Devuelve un json con todas las publicaciones y su clasificación
-* "/poststypes" Devuelve un json con todas las categorías de publicación y sus post
+* "/"               Proxima ruta de home
+* "/users"          Devuelve un json con todos los usuarios
+* "/login"          Proxima ruta de login
+* "/posts"          Devuelve un json con todas las publicaciones y su clasificación
+* "/posts/types"    Devuelve un json con todas las categorías de publicación y sus post
 
 #### Específicas
-* "/posts/:id" Devuelve una publicación específica filtrada por el id de la url
+* "/posts/:id"      Devuelve una publicación específica filtrada por el id de la url
 
 _________________
 
