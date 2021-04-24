@@ -9,7 +9,7 @@ module.exports = {
         res.send('Proximamente login')
         //res.render('login')
     },
-    users: async (req, res) => {
+    users: async (req, res) => {    // Hecho para testear
         try{
             let users = await db.User.findAll();
             res.json(users)

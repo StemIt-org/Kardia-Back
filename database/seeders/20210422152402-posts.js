@@ -7,7 +7,7 @@ module.exports = {
         title: 'Test',
         body: 'Un test de post', 
         extra: 'Un test de extra',
-        images: 'Por ahora sin images',
+        // images: 'Por ahora sin images',
         createdAt: new Date(),
         dateEnd: new Date(),
         postTypeId: 1
@@ -16,7 +16,7 @@ module.exports = {
         title: 'Test2',
         body: 'Un test de post2', 
         extra: 'Un test de extra2',
-        images: 'Por ahora sin images2',
+        // images: 'Por ahora sin images2',
         createdAt: new Date(),
         dateEnd: new Date(),
         postTypeId: 2
@@ -25,7 +25,7 @@ module.exports = {
         title: 'Test3',
         body: 'Un test de post3', 
         extra: 'Un test de extra3',
-        images: 'Por ahora sin images3',
+        // images: 'Por ahora sin images3',
         createdAt: new Date(),
         dateEnd: new Date(),
         postTypeId: 3

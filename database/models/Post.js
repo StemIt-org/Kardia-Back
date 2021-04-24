@@ -9,7 +9,6 @@ module.exports = function (Sequelize, DataTypes) {
         title: DataTypes.STRING,
         body: DataTypes.STRING,
         extra: DataTypes.STRING,
-        images: DataTypes.STRING,
         createdAt: DataTypes.DATE,
         updatedAt:DataTypes.DATE,
         dateEnd: DataTypes.DATE,
@@ -25,6 +24,10 @@ module.exports = function (Sequelize, DataTypes) {
         Post.belongsTo(models.PostType, {
             as: "postType",
             foreignKey: 'postTypeId'
+        }),
+            Post.hasMany(models.Image, {
+            as: 'postImages',
+            foreignKey: 'postId'
         })
     }
     return Post;
