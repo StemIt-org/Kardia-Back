@@ -9,16 +9,20 @@
     "create-db": "sequelize db:create",
     "migrate-db": "sequelize db:migrate",
     "seed-db": "sequelize db:seed:all",
-    "drop-db": "sequelize db:drop"
+    "drop-db": "sequelize db:drop",
+    "init": "npm-run-all create-db migrate-db seed-db startdev",
+    "reset-db": "npm-run-all drop-db create-db migrate-db seed-db"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-validator": "^6.10.0",
     "multer": "^1.4.2",
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.7",
-    "sequelize": "^6.6.2"
+    "sequelize": "^6.6.2",
+    "npm-run-all": "^4.1.5"
   }
 }

@@ -11,7 +11,6 @@ module.exports = function (Sequelize, DataTypes) {
         extra: DataTypes.STRING,
         createdAt: DataTypes.DATE,
         updatedAt:DataTypes.DATE,
-        dateEnd: DataTypes.DATE,
         postTypeId: DataTypes.INTEGER,
     };
     let config = {

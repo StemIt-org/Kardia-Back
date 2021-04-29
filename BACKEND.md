@@ -10,13 +10,13 @@ _________________
 
 _________________
 
-### Generar base de datos
+### Comandos del proyecto
 
-    npm run create-db        //Para generar la base de datos
-    npm run migrate-db       //Para generar las tablas 
-    npm run seed-db          //Para generar contenido de prueba en la base de datos
+    Usar por primera vez      npm run init
 
-    npm run drop-db          //Para borrar la base de datos 
+    Arranque normal           npm run startdev
+
+    Reset de DB               npm run reset-db 
 
 _________________
 
@@ -44,10 +44,11 @@ _________________
 >       
 > "/posts/create"   Creará una publicación al recibir por body un formulario tal que:
 >
-> - Encriptacion: **enctype="multipart/form-data"**
-> - Campos con name title, body y extra en formato string
-> - Campo postTypeId con valores entre 1, 2 o 3. Se interpretaran ==> 1 como Evento, 2 como Noticia Kardia y 3 como Noticia deportes
-> - Campo opcional: dateEnd de tipo datetime-local
+> - Configuración de formulario: **enctype="multipart/form-data"**
+> - Campos con name **title** y **body** en formato string
+> - Campo **images** para los archivos
+> - Campo **postTypeId** con valores entre 1, 2 o 3. Se interpretaran ==> 1 como Evento, 2 como Noticia Kardia y 3 como Noticia deportes
+> - Campo opcional: **dateEnd** con salida YYYY-MM-DD
 >        
 
 _________________
