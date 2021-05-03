@@ -29,7 +29,7 @@ module.exports = function (sequelize, DataTypes) {
     let config = {
         tableName: 'users',
         timestamps: false,
-        paranoid: false
+        paranoid: false,
     };
     let User = sequelize.define(alias, cols, config);
     return User;

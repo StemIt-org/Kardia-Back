@@ -18,8 +18,10 @@ module.exports = {
             tableName: 'posts',
           },
           key: 'id',
-        }
-      }
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      },
     });
   },
 

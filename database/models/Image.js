@@ -7,7 +7,10 @@ module.exports = function(Sequelize, DataTypes){
             type: DataTypes.INTEGER
         },
         name: DataTypes.STRING,
-        postId: DataTypes.INTEGER
+        postId: {
+            type: DataTypes.INTEGER,
+            
+        }
     }
     let config = {
         tableName: "images",
@@ -18,7 +21,7 @@ module.exports = function(Sequelize, DataTypes){
     Image.associate = (models) => {
         Image.belongsTo(models.Post, {
             as: 'post',
-            foreignKey: 'postId'
+            foreignKey: 'postId',
         })
     }
     

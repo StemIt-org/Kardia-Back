@@ -25,6 +25,7 @@ module.exports = function (Sequelize, DataTypes) {
             foreignKey: 'postTypeId'
         }),
             Post.hasMany(models.Image, {
+            onDelete: 'cascade',
             as: 'postImages',
             foreignKey: 'postId'
         })

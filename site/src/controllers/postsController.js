@@ -85,6 +85,110 @@ module.exports = {
             })
         }
     },
+    delete: (req, res) => {
+        db.Post.destroy({
+            where: {
+              id: req.params.id
+          }
+        }).then(() => {
+            res.json({
+                msg: 'El archivo fue eliminado'
+            })
+        })
+            .catch((err) => {
+                res.json({
+                error:err
+            })
+        })
+    },
+    edit: async (req, res) => {
+        try {
+            let postToEdit = await db.Post.finByPk({
+                include:['postType', 'postImages'],
+                where:{id: req.params.id}
+            })
+            res.json({postToEdit}) //Proximamente renderizamos el formulario para editar
+        } catch (err) {
+            res.json({
+                error: error
+            })
+        }
+    },
+    update: async (req, res) => {
+        console.log(req.originalMethod);
+        try {
+            let resultValidation = validationResult(req);
+            if (resultValidation.errors.length > 0) {
+                res.json({
+                    errors: resultValidation.mapped(),
+                })
+            } else {
+                //Guardarlo
+                const postId = parseInt(req.params.id)
+                console.log(postId);
+                const {
+                    title,
+                    body,
+                    extra,
+                    postTypeId
+                } = req.body
+                if (req.files) {
+                    const files = req.files.map(element => {
+                        return new imagen(element.filename, postId)
+                    })
+                    files.forEach(archivo => {
+                        db.Image.create(archivo)
+                    })
+                }
+                await db.Post.update({
+                    title,
+                    body,
+                    extra,
+                    postTypeId
+                }, {
+                    where: { id: postId }
+                })
+                let nuevoPost = await db.Post.findByPk(postId,{include:['postType', 'postImages']})
+                res.send(nuevoPost)
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     poststypes: async (req, res) => {   // Hecho para testear
         try {
             let postsTypes = await db.PostType.findAll({ include: 'posts' });
