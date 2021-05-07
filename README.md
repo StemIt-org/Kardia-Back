@@ -49,6 +49,18 @@ _________________
 > - Campo **images** para los archivos
 > - Campo **postTypeId** con valores entre 1, 2 o 3. Se interpretaran ==> 1 como Evento, 2 como Noticia Kardia y 3 como Noticia deportes
 > - Campo opcional: **dateEnd** con salida YYYY-MM-DD
+>
+
+#### Por PUT
+
+>       
+> "/posts/:id"   Donde :id es el id de la publicación, al recibir por body un formulario tal que:
+>
+> - Configuración de formulario: **enctype="multipart/form-data"**
+> - Campos con name **title** y **body** en formato string
+> - Campo **images** para los archivos. En ese caso no es obligatorio.
+> - Campo **postTypeId** con valores entre 1, 2 o 3. Se interpretaran ==> 1 como Evento, 2 como Noticia Kardia y 3 como Noticia deportes
+> - Campo opcional: **dateEnd** con salida YYYY-MM-DD
 >        
 
 _________________
