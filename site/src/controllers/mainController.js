@@ -5,6 +5,7 @@ const bcryptjs = require('bcryptjs')
 
 module.exports = {
     home: async (req, res) => {
+        console.log('MAIN',req.session);
         res.send('Main Index. Consultar rutas de Readme')
         //res.render('home')
     },
@@ -13,14 +14,18 @@ module.exports = {
     },
     loginProcess: async (req, res) => {
         const { email, password } = req.body;
-        const user = await db.User.findOne({ where: { email } });
-        if(!user){
+        const userToLogin = await db.User.findOne({ where: { email } });
+        if(!userToLogin){
             res.json({
                 msg: "No se encontró ese usuario"
             })
         } else {
-            if(password === user.dataValues.password){
-                jwt.sign({ user }, 'secretKey',{expiresIn: '1h'}, (err, token) => {
+            let okPassword = bcryptjs.compareSync(
+                req.body.password,
+                userToLogin.password
+              );
+            if(okPassword){
+                jwt.sign({ user: userToLogin }, 'secretKey',{expiresIn: '1h'}, (err, token) => {
                     res
                     .json({
                         token,
@@ -38,39 +43,48 @@ module.exports = {
                 .sendStatus(400)
             }
         }
-
-
-
-        // if (user) {
-        //     jwt.sign({ user }, 'secretKey', (err, token) => {
-        //         res
-        //         .json({
-        //             token,
-        //             status: 200
-        //             //users
-        //         })
-        //         .sendStatus(200)
-        //     })
-        // } else {
-        //     res
-        //     .json({
-        //         msg: "No se encontró un usuario con ese id",
-        //         status: 400
-        //     })
-        //     .sendStatus(400)
-        // }
     },
     getUser: (req, res) => {
         jwt.verify(req.token, 'secretKey', (error, authData) => {
             if (error) {
                 res.sendStatus(403)
             } else {
+                req.session.userLogged = authData.user;
+                res.locals.userLogged = req.session.userLogged
                 res.json({
-                    msg: "USER VALIDADO",
-                    authData: authData
+                    user: authData.user
                 })
             }
         })
+    },
+    register: (req, res) => {
+        res.send('register page')
+    },
+    store: async (req, res) => {
+        console.log(req.session);
+        const existInDb = await db.User.findOne({
+            where: {
+              email: req.body.email,
+            },
+          })
+        if (!existInDb) {
+            const newUser = {
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                email: req.body.email,
+                password: bcryptjs.hashSync(req.body.password, 10),
+                first_name: req.body.first_name,
+                avatar: req.body.avatar
+            }
+            await db.User.create(newUser)
+            res.json({
+                newUser
+            })
+        } else {
+            res.json({
+                msg: "This email is already register"
+            })
+        }
     },
 
 
