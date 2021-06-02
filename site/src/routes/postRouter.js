@@ -3,6 +3,7 @@ const router = express.Router();
 const uploadFiles = require('../middlewares/multerPost');
 const postsController = require('../controllers/postsController');
 const validacionePost = require('../middlewares/postValidation')
+const isLoggedMiddleware = require('../middlewares/isLoggedMiddleware')
 
 router.get("/types", postsController.poststypes);
 
@@ -10,7 +11,7 @@ router.get("/types", postsController.poststypes);
 
 router.get("/", postsController.posts);
 router.get("/images", postsController.images);   // Hecho para testear
-router.get("/create", postsController.create);
+router.get("/create",isLoggedMiddleware, postsController.create);
 router.delete("/:id", postsController.delete);
 
 router.put("/:id",

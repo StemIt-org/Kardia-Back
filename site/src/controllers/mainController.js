@@ -5,9 +5,10 @@ const bcryptjs = require('bcryptjs')
 
 module.exports = {
     home: async (req, res) => {
-        console.log('MAIN',req.session);
-        res.send('Main Index. Consultar rutas de Readme')
-        //res.render('home')
+        // console.log('MAIN',req.session);
+        // res.send('Main Index. Consultar rutas de Readme')
+        const nombre = ["lucas", "facundo"]
+        res.render('home', {nombre})
     },
     login: (req, res) => {
         res.send('Próxima ruta de login')
