@@ -4,6 +4,8 @@ const path = require('path');
 const methodOverride = require("method-override");
 const viewsPath = path.resolve(__dirname, "./views");
 const session = require("express-session");
+const bodyParser = require('body-parser');
+
 
 app.use(
   session({
@@ -11,8 +13,10 @@ app.use(
     resave: false,
     saveUninitialized: true,
   })
-);
-app.use(express.urlencoded({ extended: false }));
+  );
+  
+app.use(bodyParser());
+// app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 
 app.listen(process.env.PORT || 3000, () => {

@@ -36,10 +36,6 @@ module.exports = {
             json({ error: err })
         }
     },
-    create: (req, res) => {
-        // res.send('Proximamente formulario')
-        res.render('index')
-    },
     store: (req, res) => {
         let resultValidation = validationResult(req);
         if (resultValidation.errors.length > 0) {
@@ -60,7 +56,7 @@ module.exports = {
                 postTypeId,
             }).then((Post) => {
                 let postId = Post.dataValues.id;
-    
+                
                 if (req.files){                
                     const files = req.files.map(element => {
                         return new imagen(element.filename, postId)
@@ -77,9 +73,9 @@ module.exports = {
                         where: { id: parseInt(newPost.dataValues.id) },
                         include: ['postType', 'postImages']
                     })
-                        .then((finalRes) => {
-                            res.json(finalRes)
-                        })
+                    .then((finalRes) => {
+                        res.json(finalRes)
+                    })
                 })
                 //res.redirect(`/posts/${postId}`)
             })
@@ -88,31 +84,18 @@ module.exports = {
     delete: (req, res) => {
         db.Post.destroy({
             where: {
-              id: req.params.id
-          }
+                id: req.params.id
+            }
         }).then(() => {
             res.json({
                 msg: 'El archivo fue eliminado'
             })
         })
-            .catch((err) => {
-                res.json({
+        .catch((err) => {
+            res.json({
                 error:err
             })
         })
-    },
-    edit: async (req, res) => {
-        try {
-            let postToEdit = await db.Post.finByPk({
-                include:['postType', 'postImages'],
-                where:{id: req.params.id}
-            })
-            res.json({postToEdit}) //Proximamente renderizamos el formulario para editar
-        } catch (err) {
-            res.json({
-                error: error
-            })
-        }
     },
     update: async (req, res) => {
         console.log(req.originalMethod);
@@ -154,53 +137,36 @@ module.exports = {
         } catch (error) {
             console.log(error);
         }
-    },
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    poststypes: async (req, res) => {   // Hecho para testear
-        try {
-            let postsTypes = await db.PostType.findAll({ include: 'posts' });
-            res.json(postsTypes)
-        } catch (err) {
-            res.
-                status(400)
-            json({ error: err })
-        }
-    },
-    images: async (req, res) => {   // Hecho para testear
-        let images = await db.Image.findAll({include:'post'})
-        res.json(images) 
-    }
+    },   
+    // edit: async (req, res) => {
+    //     try {
+    //         let postToEdit = await db.Post.finByPk({
+    //             include:['postType', 'postImages'],
+    //             where:{id: req.params.id}
+    //         })
+    //         res.json({postToEdit}) //Proximamente renderizamos el formulario para editar
+    //     } catch (err) {
+    //         res.json({
+    //             error: error
+    //         })
+    //     }
+    // },
+    // create: (req, res) => {
+    //     // res.send('Proximamente formulario')
+    //     res.render('index')
+    // },
+    // poststypes: async (req, res) => {   // Hecho para testear
+    //     try {
+    //         let postsTypes = await db.PostType.findAll({ include: 'posts' });
+    //         res.json(postsTypes)
+    //     } catch (err) {
+    //         res.
+    //         status(400)
+    //         json({ error: err })
+    //     }
+    // },
+    // images: async (req, res) => {   // Hecho para testear
+    //     let images = await db.Image.findAll({include:'post'})
+    //     res.json(images) 
+    // }
 }
