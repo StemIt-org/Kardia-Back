@@ -41,16 +41,17 @@ _________________
 >
 
 >       
-> "/login"   Creará una publicación al recibir por body:
+> "/login"     Primer paso de logueo
 > - Debe recibir por body dos parámetros: **email** y **password**.
 > - En caso de ser válidas las credenciales retornará un token en formato JSON.
 >
 
 >       
-> "/getuser"   Creará una publicación al recibir por body un formulario tal que:
+> "/getuser"    Segundo paso de logueo
 > - En los headers debe recibir el token que se obtuvo anteriormente con el nombre **authorization**.
 > - En caso de validarse el token retornarà un JSON con los datos del usuario.
 >
+
 
 #### Por PUT
 
