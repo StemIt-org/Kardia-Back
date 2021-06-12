@@ -1,33 +1,23 @@
-const express = require("express");
-const app = express();
-const path = require('path');
-const methodOverride = require("method-override");
-const viewsPath = path.resolve(__dirname, "./views");
-const session = require("express-session");
+const express = require('express')
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
+const app = express();
 
-app.use(
-  session({
-    secret: "Session",
-    resave: false,
-    saveUninitialized: true,
-  })
-  );
-  
-app.use(bodyParser());
-// app.use(express.urlencoded({ extended: false }));
-app.use(methodOverride("_method"));
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log(`Servidor corriendo en el puerto ${process.env.PORT||3000}`);
+app.use(cors());
+
+const PORT = 3000;
+
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en el puerto ${PORT}`);
 })
 
-app.set("view engine", "ejs");
-app.set("views", viewsPath);
-
 const mainRouter = require("./routes/mainRouter")
-const postRouter = require("./routes/postRouter")
+const postRouter = require("./routes/postRouter");
 
 app.use("/", mainRouter)
 app.use("/posts", postRouter)

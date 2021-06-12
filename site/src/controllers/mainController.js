@@ -1,7 +1,7 @@
 const db = require('../../../database/models');
 const jwt = require('jsonwebtoken');
 const bcryptjs = require('bcryptjs')
-
+const { validationResult } = require("express-validator");
 
 module.exports = {
     loginProcess: async (req, res) => {
@@ -47,7 +47,14 @@ module.exports = {
                 }
             })
         },
-        store: async (req, res) => {
+    store: async (req, res) => {
+        console.log('STORE :', req.body)
+        let resultValidation = validationResult(req);
+        if (resultValidation.errors.length > 0) {
+            res.json({
+                errors: resultValidation.mapped(),
+            })
+        } else {
             const existInDb = await db.User.findOne({
                 where: {
                     email: req.body.email,
@@ -71,27 +78,6 @@ module.exports = {
                     msg: "This email is already register"
                 })
             }
-        },
-        // home: async (req, res) => {
-        //     // console.log('MAIN',req.session);
-        //     // res.send('Main Index. Consultar rutas de Readme')
-        //     const nombre = ["lucas", "facundo"]
-        //     res.render('home', {nombre})
-        // },
-        // login: (req, res) => {
-        //     res.send('Próxima ruta de login')
-        // },
-        // register: (req, res) => {
-        //     res.send('register page')
-        // },
-        // users: async (req, res) => {    // Hecho para testear
-        //     try{
-        //         let users = await db.User.findAll();
-        //         res.json(users)
-        //     } catch(err) {
-        //         res.
-        //         status(400)
-        //         json({error: err})
-        //     }
-        // },
+        }
+    }
 }
