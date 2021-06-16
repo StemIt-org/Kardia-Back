@@ -5,7 +5,7 @@ const cors = require('cors');
 const app = express();
 
 app.use(bodyParser.urlencoded({
-    extended: true
+    extended: false
 }))
 
 app.use(cors());
@@ -19,5 +19,5 @@ app.listen(PORT, () => {
 const mainRouter = require("./routes/mainRouter")
 const postRouter = require("./routes/postRouter");
 
-app.use("/", mainRouter)
 app.use("/posts", postRouter)
+app.use("/", mainRouter)

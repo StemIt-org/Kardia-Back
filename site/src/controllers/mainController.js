@@ -48,36 +48,39 @@ module.exports = {
             })
         },
     store: async (req, res) => {
-        console.log('STORE :', req.body)
-        let resultValidation = validationResult(req);
-        if (resultValidation.errors.length > 0) {
-            res.json({
-                errors: resultValidation.mapped(),
-            })
-        } else {
-            const existInDb = await db.User.findOne({
-                where: {
-                    email: req.body.email,
-                },
-            })
-            if (!existInDb) {
-                const newUser = {
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    email: req.body.email,
-                    password: bcryptjs.hashSync(req.body.password, 10),
-                    first_name: req.body.first_name,
-                    avatar: req.body.avatar
-                }
-                await db.User.create(newUser)
-                res.json({
-                    newUser
-                })
+        jwt.verify(req.token, 'secretKey', async (error, authData) => {
+            if (error) {
+                res.sendStatus(403)
             } else {
-                res.json({
-                    msg: "This email is already register"
-                })
+                let resultValidation = validationResult(req);
+                if (resultValidation.errors.length > 0) {
+                    res.json({
+                        errors: resultValidation.mapped(),
+                    })
+                } else {
+                    const existInDb = await db.User.findOne({
+                        where: {
+                            email: req.body.email,
+                        },
+                    })
+                    if (!existInDb) {
+                        const newUser = {
+                            first_name: req.body.first_name,
+                            last_name: req.body.last_name,
+                            email: req.body.email,
+                            password: bcryptjs.hashSync(req.body.password, 10),
+                        }
+                        await db.User.create(newUser)
+                        res.json({
+                            newUser
+                        })
+                    } else {
+                        res.json({
+                            msg: "This email is already register"
+                        })
+                    }
+                }
             }
-        }
+        })
     }
 }

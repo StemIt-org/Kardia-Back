@@ -22,9 +22,6 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        avatar: {
-            type: DataTypes.STRING
-        },
     };
     let config = {
         tableName: 'users',

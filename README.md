@@ -52,6 +52,12 @@ _________________
 > - En caso de validarse el token retornarà un JSON con los datos del usuario.
 >
 
+>       
+> "/register"    Crear un usuario
+> - En los headers debe recibir el token del usuario logueado con el nombre **authorization**.
+> - Por body deberá recibir los campos **first_name**, **last_name**, **email** y **password**.
+> - En caso de validarse el token y los inputs retornarà un JSON con los datos del usuario creado. Caso contrario retornará un JSON con los errores
+>
 
 #### Por PUT
 

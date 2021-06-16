@@ -5,11 +5,14 @@ const verifyTokenMiddleware = require('../middlewares/verifyToken')
 const registerValidations = require('../middlewares/registerMiddleware')
 
 router.post("/login", mainController.loginProcess)
+
 router.post("/getuser",
     verifyTokenMiddleware,
     mainController.getUser
 )
+
 router.post("/register",
+    verifyTokenMiddleware,
     registerValidations,
     mainController.store
 )

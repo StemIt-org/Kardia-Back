@@ -37,6 +37,7 @@ module.exports = {
         }
     },
     store: (req, res) => {
+        console.log("STORE :", req.body);
         let resultValidation = validationResult(req);
         if (resultValidation.errors.length > 0) {
             res.json({
@@ -71,10 +72,13 @@ module.exports = {
                 }).then(newPost => {
                     db.Post.findOne({
                         where: { id: parseInt(newPost.dataValues.id) },
-                        include: ['postType', 'postImages']
+                        include: ['postType']
                     })
                     .then((finalRes) => {
-                        res.json(finalRes)
+                        res.json({
+                            msg: "The post was succefully created",
+                            postId: finalRes.id
+                        })
                     })
                 })
                 //res.redirect(`/posts/${postId}`)
