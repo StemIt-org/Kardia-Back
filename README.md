@@ -32,6 +32,9 @@ _________________
 
 #### Por POST
 
+##### Todos deberán recibir el token de autenticación del usuario para realizar la acción en estas rutas.
+
+
 >       
 > "/posts/create"   Creará una publicación al recibir un form-data:
 >
@@ -67,7 +70,15 @@ _________________
 > - Campo **images** para los archivos. En ese caso no es obligatorio.
 > - Campo **postTypeId** con valores entre 1, 2 o 3. Se interpretaran ==> 1 como Evento, 2 como Noticia Kardia y 3 como Noticia deportes
 >        
+> También deberá contar en el token de autenticación del usuario        
+>        
 
+
+#### Por DELETE
+
+>       
+> "/posts/:id"   Donde :id es el id de la publicación, al recibir el token de autenticación del usuario:
+>      
 _________________
 
 ## Arrancar el proyecto

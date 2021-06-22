@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use(cors());
+require('dotenv').config()
 
 const PORT = 3000;
 

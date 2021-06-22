@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const mainController = require('../controllers/mainController')
-const verifyTokenMiddleware = require('../middlewares/verifyToken')
-const registerValidations = require('../middlewares/registerMiddleware')
+const mainController = require('../controllers/mainController');
+const verifyTokenMiddleware = require('../middlewares/verifyToken');
+const registerValidations = require('../middlewares/registerMiddleware');
 
 router.post("/login", mainController.loginProcess)
 
