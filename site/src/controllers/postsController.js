@@ -42,7 +42,6 @@ module.exports = {
             if (error) {
                 res.sendStatus(401)
             } else {
-                console.log("STORE :", req.body, req.files);
                 let resultValidation = validationResult(req);
                 if (resultValidation.errors.length > 0) {
                     res.json({
