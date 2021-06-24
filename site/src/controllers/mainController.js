@@ -1,9 +1,15 @@
-const db = require('../../../database/models');
 const jwt = require('jsonwebtoken');
-const bcryptjs = require('bcryptjs')
+const bcryptjs = require('bcryptjs');
+const db = require('../../../database/models');
 const { validationResult } = require("express-validator");
 
 module.exports = {
+    mainPage: (req, res) => {
+        res.json({
+            msg: "Please specify the route",
+            doc: "https://github.com/StemIt-org/Kardia-Back/blob/master/README.md"
+        })
+    },
     loginProcess: async (req, res) => {
         const { email, password } = req.body;
         const userToLogin = await db.User.findOne({ where: { email } });

@@ -4,6 +4,8 @@ const mainController = require('../controllers/mainController');
 const verifyTokenMiddleware = require('../middlewares/verifyToken');
 const registerValidations = require('../middlewares/registerMiddleware');
 
+router.get("/", mainController.mainPage)
+
 router.post("/login", mainController.loginProcess)
 
 router.post("/getuser",
