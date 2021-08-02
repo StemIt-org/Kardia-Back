@@ -12,7 +12,10 @@ class imagen{
 module.exports = {
     posts: async (req, res) => {
         try {
-            let posts = await db.Post.findAll({ include: ['postType', 'postImages'] });
+            let posts = await db.Post.findAll({
+                include: ['postType', 'postImages'],
+                limit: 5
+            });
             res.json(posts)
         } catch (err) {
             res

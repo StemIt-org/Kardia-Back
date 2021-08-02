@@ -7,11 +7,8 @@ module.exports = {
         name: 'Evento'
       },
       {
-        name: 'Noticia-Kardia'
+        name: 'Noticia'
       },
-      {
-        name: 'Noticia-deporte'
-      }
     ])
   },
 

@@ -40,7 +40,7 @@ _________________
 >
 > - Campos con name **title** y **body** en formato string
 > - Campo **images** para los archivos
-> - Campo **postTypeId** con valores entre 1, 2 o 3. Se interpretaran ==> 1 como Evento, 2 como Noticia Kardia y 3 como Noticia deportes
+> - Campo **postTypeId** con valores entre 1, 2 o 3. Se interpretaran ==> 1 como Evento, 2 como Noticia
 >
 
 >       
