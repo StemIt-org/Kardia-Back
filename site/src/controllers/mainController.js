@@ -41,18 +41,18 @@ module.exports = {
                     .sendStatus(400)
                 }
             }
-        },
-        getUser: (req, res) => {
-            jwt.verify(req.token, 'secretKey', (error, authData) => {
-                if (error) {
-                    res.sendStatus(403)
-                } else {
-                    res.json({
-                        user: authData.user
-                    })
-                }
-            })
-        },
+    },
+    getUser: (req, res) => {
+        jwt.verify(req.token, 'secretKey', (error, authData) => {
+            if (error) {
+                res.sendStatus(403)
+            } else {
+                res.json({
+                    user: authData.user
+                })
+            }
+        })
+    },
     store: async (req, res) => {
         jwt.verify(req.token, 'secretKey', async (error, authData) => {
             if (error) {
@@ -88,5 +88,35 @@ module.exports = {
                 }
             }
         })
-    }
+    },
+    suscribe: async (req, res) => {
+        try {
+            await db.newsletterMail.create(req.body)
+            res.json({
+                msg:"Success"
+            })
+        } catch (error) {
+            res.json({
+                msg: "There was an error"
+            })
+        }
+        
+    },
+    getEmails: async (req, res) => {
+        try {
+            const emails = await db.newsletterMail.findAll();
+            res.json(emails)
+        } catch (error) {
+            
+        }
+    },
+    deleteSubscripcion: async (req, res) => {
+        try {
+            res.json({msg:"ok"})
+        } catch (error) {
+            res.json({
+                msg: "There was an error"
+            });
+        };
+    },
 }

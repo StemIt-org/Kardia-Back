@@ -5,6 +5,7 @@ const verifyTokenMiddleware = require('../middlewares/verifyToken');
 const registerValidations = require('../middlewares/registerMiddleware');
 
 router.get("/", mainController.mainPage)
+router.get("/getemails", mainController.getEmails)
 
 router.post("/login", mainController.loginProcess)
 
@@ -18,5 +19,7 @@ router.post("/register",
     registerValidations,
     mainController.store
 )
+
+router.post("/suscribe", mainController.suscribe)
 
 module.exports = router;

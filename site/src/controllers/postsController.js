@@ -14,7 +14,7 @@ module.exports = {
         try {
             let posts = await db.Post.findAll({
                 include: ['postType', 'postImages'],
-                limit: 5
+                limit: 10
             });
             res.json(posts)
         } catch (err) {
