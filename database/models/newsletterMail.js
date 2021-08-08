@@ -1,5 +1,5 @@
 module.exports = function (Sequelize, DataTypes) {
-    let alias = "newsletterMail";
+    let alias = "NewsletterMail";
     let cols = {
         id: {
             primaryKey: true,
@@ -16,5 +16,5 @@ module.exports = function (Sequelize, DataTypes) {
     }
     let newsletterMail = Sequelize.define(alias, cols, config);
 
-    return newsletterMail;
+    return NewsletterMail;
 }

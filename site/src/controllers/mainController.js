@@ -91,7 +91,7 @@ module.exports = {
     },
     suscribe: async (req, res) => {
         try {
-            await db.newsletterMail.create(req.body)
+            await db.NewsletterMail.create(req.body)
             res.json({
                 msg:"Success"
             })
@@ -104,7 +104,7 @@ module.exports = {
     },
     getEmails: async (req, res) => {
         try {
-            const emails = await db.newsletterMail.findAll();
+            const emails = await db.NewsletterMail.findAll();
             res.json(emails)
         } catch (error) {
             
