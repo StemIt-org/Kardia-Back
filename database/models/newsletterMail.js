@@ -14,7 +14,7 @@ module.exports = function (Sequelize, DataTypes) {
         timesTamps: false,
         paranoid: false
     }
-    let newsletterMail = Sequelize.define(alias, cols, config);
+    let NewsletterMail = Sequelize.define(alias, cols, config);
 
     return NewsletterMail;
 }
