@@ -6,12 +6,28 @@ const defaulDevelopsettings = {
   "host": "127.0.0.1",
   "dialect": "mysql"
 };
+// || defaulDevelopsettings.username
+// || defaulDevelopsettings.password
+// || defaulDevelopsettings.database
+// || defaulDevelopsettings.host
+// USERNAME_RDS=root
+// PASSWORD=Julian10
+// DATABASE=kardiadev
+// ENDPOINT=kardiadev.cs4901g4yrbg.us-east-1.rds.amazonaws.com
+
 module.exports = {
+  // "development": {
+  //   "username": `${process.env.USERNAME_RDS}`,
+  //   "password": `${process.env.PASSWORD}`,
+  //   "database": `${process.env.DATABASE}`,
+  //   "host": `${process.env.ENDPOINT}`,
+  //   "dialect": "mysql"
+  // },
   "development": {
-    "username": `${process.env.USERNAME_RDS}` || defaulDevelopsettings.username,
-    "password": `${process.env.PASSWORD}` || defaulDevelopsettings.password,
-    "database": `${process.env.DATABASE}` || defaulDevelopsettings.database,
-    "host": `${process.env.ENDPOINT}` || defaulDevelopsettings.host,
+    "username": `root`,
+    "password": `Julian10`,
+    "database": `kardiadev`,
+    "host": `kardiadev.cs4901g4yrbg.us-east-1.rds.amazonaws.com`,
     "dialect": "mysql"
   },
   "development": {

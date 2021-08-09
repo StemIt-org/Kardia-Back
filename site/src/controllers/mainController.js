@@ -11,36 +11,44 @@ module.exports = {
         })
     },
     loginProcess: async (req, res) => {
-        const { email, password } = req.body;
-        const userToLogin = await db.User.findOne({ where: { email } });
-        if(!userToLogin){
-            res.json({
-                msg: "No se encontró ese usuario"
-            })
-        } else {
-            let okPassword = bcryptjs.compareSync(
-                req.body.password,
-                userToLogin.password
-                );
-                if(okPassword){
-                    jwt.sign({ user: userToLogin }, 'secretKey',{expiresIn: '1h'}, (err, token) => {
+        try {
+            const { email, password } = req.body;
+            const userToLogin = await db.User.findOne({ where: { email } });
+            if(!userToLogin){
+                res.json({
+                    msg: "No se encontró ese usuario"
+                })
+            } else {
+                let okPassword = bcryptjs.compareSync(
+                    password,
+                    userToLogin.password
+                    );
+                    if(okPassword){
+                        jwt.sign({ user: userToLogin }, 'secretKey',{expiresIn: '1h'}, (err, token) => {
+                            res
+                            .json({
+                                token,
+                                status: 200
+                                //users
+                            })
+                            .sendStatus(200)
+                        })
+                    } else {
                         res
                         .json({
-                            token,
-                            status: 200
-                            //users
+                            msg: "Credenciales incorrectas",
+                            status: 400
                         })
-                        .sendStatus(200)
-                    })
-                } else {
-                    res
-                    .json({
-                        msg: "Credenciales incorrectas",
-                        status: 400
-                    })
-                    .sendStatus(400)
+                        .sendStatus(400)
+                    }
                 }
-            }
+        } catch (er) {
+            console.log(er);
+            res.json({
+                msg: "Hubo un error",
+                error: er
+            })
+        }
     },
     getUser: (req, res) => {
         jwt.verify(req.token, 'secretKey', (error, authData) => {
