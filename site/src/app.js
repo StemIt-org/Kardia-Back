@@ -4,6 +4,11 @@ const cors = require('cors');
 
 const app = express();
 
+app.use(cors({
+  origin:["*"]
+}));
+
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -16,7 +21,6 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.json())
 
-app.use(cors());
 require('dotenv').config()
 const PORT = 3000;
 

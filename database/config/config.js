@@ -24,7 +24,7 @@ module.exports = {
   //   "dialect": "mysql"
   // },
   "development": {
-    "username": `root`,
+    "username": `Ubuntu`,
     "password": `Julian10`,
     "database": `kardiadev`,
     "host": `kardiadev.cs4901g4yrbg.us-east-1.rds.amazonaws.com`,
