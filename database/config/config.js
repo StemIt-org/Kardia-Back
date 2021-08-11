@@ -9,11 +9,11 @@ const defaulDevelopsettings = {
 
 module.exports = {
   "development": {
-    "username": `root`,
-    "password": `Julian10`,
-    "database": `kardiadev`,
-    "host": `kardiadev.cs4901g4yrbg.us-east-1.rds.amazonaws.com`,
-    "dialect": "mysql",
+    "username": `${process.env.USERNAME_RDS}`,
+    "password": `${process.env.PASSWORD_RDS}`,
+    "database": `${process.env.DATABASE_RDS}`,
+    "host": `${process.env.ENDPOINT_RDS}`,
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",
