@@ -14,7 +14,7 @@ module.exports = {
         try {
             const { email, password } = req.body;
             const userToLogin = await db.User.findOne({ where: { email } });
-            if(!userToLogin){
+            if (!userToLogin) {
                 res.json({
                     msg: "No se encontró ese usuario"
                 })
@@ -22,26 +22,26 @@ module.exports = {
                 let okPassword = bcryptjs.compareSync(
                     password,
                     userToLogin.password
-                    );
-                    if(okPassword){
-                        jwt.sign({ user: userToLogin }, 'secretKey',{expiresIn: '1h'}, (err, token) => {
-                            res
+                );
+                if (okPassword) {
+                    jwt.sign({ user: userToLogin }, 'secretKey', { expiresIn: '1h' }, (err, token) => {
+                        res
                             .json({
                                 token,
                                 status: 200
                                 //users
                             })
                             .sendStatus(200)
-                        })
-                    } else {
-                        res
+                    })
+                } else {
+                    res
                         .json({
                             msg: "Credenciales incorrectas",
                             status: 400
                         })
                         .sendStatus(400)
-                    }
                 }
+            }
         } catch (er) {
             console.log(er);
             res.json({
@@ -101,7 +101,7 @@ module.exports = {
         try {
             await db.NewsletterMail.create(req.body)
             res.json({
-                msg:"Success"
+                msg: "Success"
             })
         } catch (error) {
             res.json({
@@ -113,18 +113,22 @@ module.exports = {
     getEmails: async (req, res) => {
         try {
             const emails = await db.NewsletterMail.findAll();
-            res.json(emails)
-        } catch (error) {
-            
-        }
-    },
-    deleteSubscripcion: async (req, res) => {
-        try {
-            res.json({msg:"ok"})
+            res.json(emails);
         } catch (error) {
             res.json({
                 msg: "There was an error"
             });
         };
     },
-}
+    deleteSubscripcion: async (req, res) => {
+        try {
+            res.json({
+                msg: "ok"
+            });
+        } catch (error) {
+            res.json({
+                msg: "There was an error"
+            });
+        };
+    },
+};
