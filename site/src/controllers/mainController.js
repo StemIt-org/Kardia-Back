@@ -62,40 +62,48 @@ module.exports = {
         })
     },
     store: async (req, res) => {
-        jwt.verify(req.token, 'secretKey', async (error, authData) => {
-            if (error) {
-                res.sendStatus(403)
-            } else {
-                let resultValidation = validationResult(req);
-                if (resultValidation.errors.length > 0) {
-                    res.json({
-                        errors: resultValidation.mapped(),
-                    })
+        try {
+            jwt.verify(req.token, 'secretKey', async (error, authData) => {
+                if (error) {
+                    res.sendStatus(403)
                 } else {
-                    const existInDb = await db.User.findOne({
-                        where: {
-                            email: req.body.email,
-                        },
-                    })
-                    if (!existInDb) {
-                        const newUser = {
-                            first_name: req.body.first_name,
-                            last_name: req.body.last_name,
-                            email: req.body.email,
-                            password: bcryptjs.hashSync(req.body.password, 10),
-                        }
-                        await db.User.create(newUser)
+                    let resultValidation = validationResult(req);
+                    if (resultValidation.errors.length > 0) {
                         res.json({
-                            newUser
+                            errors: resultValidation.mapped(),
                         })
                     } else {
-                        res.json({
-                            msg: "This email is already register"
+                        const existInDb = await db.User.findOne({
+                            where: {
+                                email: req.body.email,
+                            },
                         })
+                        if (!existInDb) {
+                            const newUser = {
+                                first_name: req.body.first_name,
+                                last_name: req.body.last_name,
+                                email: req.body.email,
+                                password: bcryptjs.hashSync(req.body.password, 10),
+                            }
+                            await db.User.create(newUser)
+                            res.json({
+                                newUser
+                            })
+                        } else {
+                            res.json({
+                                msg: "This email is already register"
+                            })
+                        }
                     }
                 }
-            }
-        })
+            })            
+        } catch (err) {
+            res.json({
+                msg: "There was an error",
+                err
+            })
+        }
+
     },
     suscribe: async (req, res) => {
         try {
@@ -103,9 +111,10 @@ module.exports = {
             res.json({
                 msg: "Success"
             })
-        } catch (error) {
+        } catch (err) {
             res.json({
-                msg: "There was an error"
+                msg: "There was an error",
+                err
             })
         }
         
@@ -114,9 +123,10 @@ module.exports = {
         try {
             const emails = await db.NewsletterMail.findAll();
             res.json(emails);
-        } catch (error) {
+        } catch (err) {
             res.json({
-                msg: "There was an error"
+                msg: "There was an error",
+                err
             });
         };
     },
@@ -125,9 +135,10 @@ module.exports = {
             res.json({
                 msg: "ok"
             });
-        } catch (error) {
+        } catch (err) {
             res.json({
-                msg: "There was an error"
+                msg: "There was an error",
+                err
             });
         };
     },

@@ -23,18 +23,6 @@ module.exports = {
         name:'post-image-5',
         postId:2,
       },
-      {
-        name:'post-image-6',
-        postId:3,
-      },
-      {
-        name:'post-image-7',
-        postId:3,
-      },
-      {
-        name:'post-image-8',
-        postId:3,
-      },
       
     ]);
    

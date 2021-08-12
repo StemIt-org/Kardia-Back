@@ -19,8 +19,8 @@ module.exports = {
             res.json(posts)
         } catch (err) {
             res
-                .status(400)
-                .json({ error: err })
+            .status(400)
+            .json({ error: err })
         }
     },
     post: async (req, res) => {
