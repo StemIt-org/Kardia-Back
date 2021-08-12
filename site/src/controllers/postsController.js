@@ -69,8 +69,8 @@ module.exports = {
                             const files = req.files.map(element => {
                                 return new imagen(element.filename, postId)
                             })
-                            files.forEach(archivo => {
-                                db.Image.create(archivo)
+                            files.forEach(file => {
+                                db.Image.create(file)
                             })
                         }
                         db.Post.findOne({
@@ -88,7 +88,6 @@ module.exports = {
                                 })
                             })
                         })
-                        //res.redirect(`/posts/${postId}`)
                     })
                 }
             }
@@ -143,8 +142,8 @@ module.exports = {
                             const files = req.files.map(element => {
                                 return new imagen(element.filename, postId)
                             })
-                            files.forEach(archivo => {
-                                db.Image.create(archivo)
+                            files.forEach(file => {
+                                db.Image.create(file)
                             })
                         }
                         await db.Post.update({

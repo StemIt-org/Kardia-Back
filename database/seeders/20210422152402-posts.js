@@ -19,14 +19,6 @@ module.exports = {
         createdAt: new Date(),
         postTypeId: 2
       },
-      {
-        title: 'Test3',
-        body: 'Un test de post3', 
-        extra: 'Un test de extra3',
-        // images: 'Por ahora sin images3',
-        createdAt: new Date(),
-        postTypeId: 3
-      }
     ]);
   },
 
