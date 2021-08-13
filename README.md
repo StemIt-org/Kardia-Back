@@ -30,9 +30,15 @@ _________________
 
 * "/posts/:id"      Devuelve una publicación específica filtrada por el id de la url, incluyendo tipo e imágenes
 
-#### Por POST
+* "/getemails"      Devuelve un json con un array de emails,
 
-##### Todos deberán recibir el token de autenticación del usuario para realizar la acción en estas rutas.
+#### Por POST
+>
+>"/suscribe"        Suscribirá un mail y nombre al newletter
+> - Deberá recibir un objeto con los campos **email** y **name**
+>
+
+##### Todos las siguientes rustas deberán recibir el token de autenticación del usuario para realizar la acción en estas rutas.
 
 
 >       
