@@ -24,15 +24,29 @@ _________________
 
 #### Por GET
 
-* "/users"          Devuelve un json con todos los usuarios
+* "/users"          Devuelve un json con todos los usuarios.
 
-* "/posts/"         Devuelve un json con todas las publicaciones, su clasificación e imágenes que incluye 
+* "/getemails"      Devuelve un json con todos los emails y nombres de quienes se suscribieron al newsletter.
 
-* "/posts/:id"      Devuelve una publicación específica filtrada por el id de la url, incluyendo tipo e imágenes
+* "/posts/"         Devuelve un json con todas las publicaciones, su clasificación e imágenes que incluye.
+
+* "/posts/:id"      Devuelve una publicación específica filtrada por el id de la url, incluyendo tipo e imágenes.
 
 #### Por POST
 
-##### Todos deberán recibir el token de autenticación del usuario para realizar la acción en estas rutas.
+>       
+> "/suscribe"   Suscribirá al newsletter el email que llegue
+>
+> - Campos con name **name** y **email** en formato string
+>
+
+>       
+> "/unsuscribe"   Desuscribirá al newsletter el email que llegue
+>
+> - Campo **email**
+>
+
+##### Las siguientes rutas deberán recibir el token de autenticación del usuario para realizar la acción en estas rutas.
 
 
 >       
