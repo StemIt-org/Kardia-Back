@@ -24,11 +24,13 @@ _________________
 
 #### Por GET
 
-* "/users"          Devuelve un json con todos los usuarios
+* "/users"          Devuelve un json con todos los usuarios.
 
-* "/posts/"         Devuelve un json con todas las publicaciones, su clasificación e imágenes que incluye 
+* "/getemails"      Devuelve un json con todos los emails y nombres de quienes se suscribieron al newsletter.
 
-* "/posts/:id"      Devuelve una publicación específica filtrada por el id de la url, incluyendo tipo e imágenes
+* "/posts/"         Devuelve un json con todas las publicaciones, su clasificación e imágenes que incluye.
+
+* "/posts/:id"      Devuelve una publicación específica filtrada por el id de la url, incluyendo tipo e imágenes.
 
 * "/getemails"      Devuelve un json con un array de emails,
 
@@ -38,7 +40,7 @@ _________________
 > - Deberá recibir un objeto con los campos **email** y **name**
 >
 
-##### Todos las siguientes rustas deberán recibir el token de autenticación del usuario para realizar la acción en estas rutas.
+##### Todos las siguientes rutas deberán recibir el token de autenticación del usuario para realizar la acción en estas rutas.
 
 
 >       
