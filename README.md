@@ -44,7 +44,7 @@ _________________
 > - Campo **email** en query params
 >
 
-##### Las siguientes rutas deberán recibir el token de autenticación del usuario para realizar la acción en estas rutas.
+##### Todos las siguientes rutas deberán recibir el token de autenticación del usuario para realizar la acción en estas rutas.
 
 
 >       
