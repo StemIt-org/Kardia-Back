@@ -20,8 +20,8 @@ router.post("/register",
     mainController.store
 )
 
-router.post("/suscribe", mainController.suscribe)
+router.get("/suscribe", mainController.suscribe)
 
-router.post("/unsuscribe", mainController.deleteSubscripcion)
+router.get("/unsuscribe", mainController.deleteSubscripcion)
 
 module.exports = router;

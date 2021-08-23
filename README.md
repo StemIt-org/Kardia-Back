@@ -32,18 +32,16 @@ _________________
 
 * "/posts/:id"      Devuelve una publicación específica filtrada por el id de la url, incluyendo tipo e imágenes.
 
-#### Por POST
-
 >       
 > "/suscribe"   Suscribirá al newsletter el email que llegue
 >
-> - Campos con name **name** y **email** en formato string
+> - Campos con name **name** y **email** en query params
 >
 
 >       
 > "/unsuscribe"   Desuscribirá al newsletter el email que llegue
 >
-> - Campo **email**
+> - Campo **email** en query params
 >
 
 ##### Las siguientes rutas deberán recibir el token de autenticación del usuario para realizar la acción en estas rutas.

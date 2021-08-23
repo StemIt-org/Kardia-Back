@@ -2,6 +2,7 @@ const { validationResult } = require("express-validator");
 const db = require('../../../database/models');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { now } = require("sequelize/types/lib/utils");
 
 module.exports = {
     mainPage: (req, res) => {
@@ -106,8 +107,12 @@ module.exports = {
     },
     suscribe: async (req, res) => {
         try {
-            const { name, email } = req.body;
-            await db.NewsletterMail.create({name, email})
+            const { name, email } = req.query;
+            await db.NewsletterMail.create({
+                name: name,
+                email: email,
+                createdAt: Date.now()
+            })
             res.json({
                 msg: "Success"
             });

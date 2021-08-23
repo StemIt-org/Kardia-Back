@@ -8,10 +8,18 @@ module.exports = function (Sequelize, DataTypes) {
         },
         name: DataTypes.STRING,
         email: DataTypes.STRING,
+        createdAt:{
+            type: DataTypes.DATE,
+            defaultValue: Date.now()
+        },
+        updatedAt:{
+            type: DataTypes.DATE,
+            defaultValue: Date.now()
+        }
     };
     let config = {
-        tableName: "newsletterMails",
-        timesTamps: false,
+        tableName: "NewsletterMail",
+        timesTamps: true,
         paranoid: false
     }
     let NewsletterMail = Sequelize.define(alias, cols, config);
