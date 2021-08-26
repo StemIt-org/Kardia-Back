@@ -20,6 +20,8 @@ router.post("/register",
     mainController.store
 )
 
+router.post("/contact", mainController.contact)
+
 router.get("/suscribe", mainController.suscribe)
 
 router.get("/unsuscribe", mainController.deleteSubscripcion)

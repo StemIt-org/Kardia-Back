@@ -35,7 +35,7 @@ _________________
 >       
 > "/suscribe"   Suscribirá al newsletter el email que llegue
 >
-> - Campos con name **name** y **email** en query params
+> - Campo **email** en query params
 >
 
 >       
@@ -72,6 +72,11 @@ _________________
 > - En los headers debe recibir el token del usuario logueado con el nombre **authorization**.
 > - Por body deberá recibir los campos **first_name**, **last_name**, **email** y **password**.
 > - En caso de validarse el token y los inputs retornarà un JSON con los datos del usuario creado. Caso contrario retornará un JSON con los errores
+>
+
+>       
+> "/contact"    Funcionalidad de mail de contacto
+> - Por body deberá recibir los campos **name**, **email** y **message**.
 >
 
 #### Por PUT

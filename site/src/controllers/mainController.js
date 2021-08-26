@@ -1,8 +1,10 @@
 const { validationResult } = require("express-validator");
 const db = require('../../../database/models');
+const nodemailer = require('nodemailer');
+const template = require('../../mail-service/mai.template')
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { now } = require("sequelize/types/lib/utils");
+require('dotenv').config()
 
 module.exports = {
     mainPage: (req, res) => {
@@ -107,9 +109,9 @@ module.exports = {
     },
     suscribe: async (req, res) => {
         try {
-            const { name, email } = req.query;
+            const { email } = req.query;
             await db.NewsletterMail.create({
-                name: name,
+                name: email,
                 email: email,
                 createdAt: Date.now()
             })
@@ -151,4 +153,52 @@ module.exports = {
             });
         };
     },
+    contact: async (req, res) => {
+        try {
+            const transporter = nodemailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: 465,
+                secure: true,
+                auth: {
+                    user:`${process.env.KARDIA_EMAIL}`,
+                    pass:`${process.env.KARDIA_EMAIL_PASS}`,
+                }
+            });
+                
+            const mensaje = `
+            Mensaje: ${req.body.message}.
+
+            Envía: ${req.body.name}.
+            Mail: ${req.body.email}.
+            
+            `;
+
+            const mailOptions = {
+            from: `${process.env.KARDIA_EMAIL}`,
+            to: 'facuserra2002@gmail.com',
+            // to: 'kardia.inclusion@gmail.com',
+            subject: 'Asunto Del Correo',
+            text: mensaje
+            };
+            
+            transporter.sendMail(mailOptions, function(error){
+                if (error) {
+                res.json({
+                    msg: "There was an error",
+                    error
+                });
+                console.log(error);
+            } else {
+                res.json({
+                    msg: 'Email enviado'
+                })
+            }
+            });
+        } catch (err) {
+            res.json({
+                msg: "There was an error",
+                err
+            });
+        }
+    }
 };
