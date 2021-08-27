@@ -1,5 +1,6 @@
-const express = require('express')
 const bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
 const cors = require('cors');
 
 const app = express();
@@ -12,12 +13,15 @@ app.use(cors({
 }));
 
 app.use(bodyParser.urlencoded({
-    extended: false
+  extended: false
 }))
 
 app.use(express.json())
 
+app.use('/static', express.static('./images'))
+
 require('dotenv').config()
+
 const PORT = 3000;
 
 app.listen(PORT, () => {
