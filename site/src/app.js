@@ -4,7 +4,9 @@ const path = require('path');
 const cors = require('cors');
 
 const app = express();
-
+const publicPath = path.join(__dirname, '/images')
+console.log(publicPath);
+  
 app.use(cors({
   "origin": "*",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -12,13 +14,14 @@ app.use(cors({
   "optionsSuccessStatus": 204
 }));
 
+app.use(express.static(publicPath));
+
 app.use(bodyParser.urlencoded({
   extended: false
 }))
 
 app.use(express.json())
 
-app.use('/static', express.static('./images'))
 
 require('dotenv').config()
 

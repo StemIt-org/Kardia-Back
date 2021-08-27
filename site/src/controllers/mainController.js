@@ -1,7 +1,6 @@
 const { validationResult } = require("express-validator");
 const db = require('../../../database/models');
 const nodemailer = require('nodemailer');
-const template = require('../../mail-service/mai.template')
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv').config()
